@@ -1,5 +1,8 @@
+
+
 export  interface User { 
-  login: string,
+  username: string,
   password: string,
-  roles:Array<String>,
+  last_name:string,
+  firts_name:string,
 }

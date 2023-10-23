@@ -12,14 +12,14 @@ module.exports = {
     parser: '@typescript-eslint/parser',
   },
   plugins: ['@typescript-eslint', 'jest',"vue"],
-
+ 
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
     'plugin:jest/recommended',
     'prettier',
-    'rules: "vue/component-name-in-template-casing": ["error", "kebab-case"]'
+    'rules: "vue/component-name-in-template-casing": ["error", "kebab-case"]  "vue/no-v-model-argument": "off"'
   ],
   
   overrides: [
