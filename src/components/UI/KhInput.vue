@@ -7,10 +7,11 @@
       :value="value"
     />
     <component :is="$props.icon"></component>
+    <div v-html="props.errorMsg"></div>
   </div>
 </template>
 
-<script >
+<script>
 export default {
   inheritAttrs: false,
   props: {
@@ -20,8 +21,9 @@ export default {
       default: "2xl",
     },
     icon: Object,
+    errorMsg: String,
   },
-  
+
   setup(props, { emit }) {
     const handleInput = (e) => {
       let value = e.target.value;

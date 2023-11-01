@@ -27,6 +27,7 @@ import KhButton from "@/components/UI//KhButton.vue";
 import KhInput from "@/components/UI/KhInput.vue";
 import { renderIcon } from "@/helper/rendericon.js";
 import KeyIcon from "@/components/icons/KeyIcon.vue";
+import getErrorValidMsg from "@/helper/getErrorValidMsg"
 
 const props = defineProps({
   arrayInput: {
@@ -37,6 +38,7 @@ const props = defineProps({
         type: "text",
         placeholder: "default",
         icon: renderIcon(AccountCircle),
+        error:
       },
     ],
   },
