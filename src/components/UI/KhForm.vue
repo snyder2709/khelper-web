@@ -42,9 +42,6 @@ const props = defineProps({
   },
   title: { type: String, default: "Форма" },
 });
-onMounted(() => {
-  console.log(props.arrayInput);
-});
 </script>
 
 <style lang="scss" scoped>

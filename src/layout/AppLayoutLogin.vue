@@ -91,9 +91,6 @@ const formState = ref([
     icon: renderIcon(KeyIcon),
   },
 ]);
-onMounted(() => {
-  console.log(userState);
-});
 </script>
 
 <style lang="scss" scoped></style>
