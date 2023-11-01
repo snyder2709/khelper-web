@@ -5,6 +5,7 @@
     </h2>
 
     <div class="form__container">
+
       <kh-input
         v-for="(inputData, index) in props.arrayInput"
         :key="index"
@@ -12,8 +13,8 @@
         :type="inputData.type"
         :placeholder="inputData.placeholder"
         :icon="inputData.icon"
+        :error="inputData.error"
       />
-
       <slot></slot>
     </div>
   </div>
@@ -22,12 +23,10 @@
 <script setup>
 import AccountCircle from "@/components/icons/AccountCircle.vue";
 import { reactive, ref, h, render, onMounted } from "vue";
-// import KhButton from "./KhButton.vue";
 import KhButton from "@/components/UI//KhButton.vue";
 import KhInput from "@/components/UI/KhInput.vue";
 import { renderIcon } from "@/helper/rendericon.js";
 import KeyIcon from "@/components/icons/KeyIcon.vue";
-import getErrorValidMsg from "@/helper/getErrorValidMsg"
 
 const props = defineProps({
   arrayInput: {
@@ -38,12 +37,15 @@ const props = defineProps({
         type: "text",
         placeholder: "default",
         icon: renderIcon(AccountCircle),
-        error:
+        error:Function
       },
     ],
   },
   title: { type: String, default: "Форма" },
 });
+onMounted(() => {
+  console.log(props.arrayInput)
+})
 </script>
 
 <style lang="scss" scoped>

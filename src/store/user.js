@@ -32,22 +32,35 @@ export const useUserStore = defineStore("user", () => {
       last_name: { required },
     };
   });
+  const rulesLog = computed(() => {
+    return {
+      email: { required: customRules.checkEmail },
+      username: { required },
+      password: { required: customRules.minLength },
+      first_name: { required },
+      last_name: { required },
+    };
+  });
 
-  const userState = reactive({
+  const userStateReg = reactive({
     username: ref(""),
     email: ref(""),
     password: ref(""),
     first_name: ref(""),
     last_name: ref(""),
   });
+  const userStateLog = reactive({
+    username: ref(""),
+    password: ref(""),
+  });
 
-  const v$ = useVuelidate(rules, { userState });
-
+  const v$ = useVuelidate(rules, userStateReg);
   async function registration() {
     const result = await v$.value.$validate();
-    console.log(v$.value);
+
+    console.log(v$.$model);
     if (result)
-      HTTP.post("/reg", { user: userState })
+      HTTP.post("/reg", { user: userStateReg })
         .then((responce) => {
           console.log(responce);
         })
@@ -56,7 +69,9 @@ export const useUserStore = defineStore("user", () => {
         });
   }
   return {
-    userState,
+    userStateReg,
     registration,
+    userStateLog,
+    v$
   };
 });

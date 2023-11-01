@@ -7,7 +7,7 @@
       :value="value"
     />
     <component :is="$props.icon"></component>
-    <div v-html="props.errorMsg"></div>
+    <div v-html="$props.error"></div>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
       default: "2xl",
     },
     icon: Object,
-    errorMsg: String,
+    error: String,
   },
 
   setup(props, { emit }) {
