@@ -3,45 +3,48 @@
     <h2 class="form__title">
       {{ $props.title }}
     </h2>
+
     <div class="form__container">
       <kh-input
         v-for="(inputData, index) in props.arrayInput"
         :key="index"
-        v-model="inputData.model"
+        v-model:value="inputData.model"
         :type="inputData.type"
         :placeholder="inputData.placeholder"
         :icon="inputData.icon"
       />
-      <kh-button label="Вход" />
+
+      <slot></slot>
     </div>
   </div>
 </template>
 
-<script setup >
+<script setup>
 import AccountCircle from "@/components/icons/AccountCircle.vue";
-import { reactive, ref, h, render } from "vue";
+import { reactive, ref, h, render, onMounted } from "vue";
 // import KhButton from "./KhButton.vue";
 import KhButton from "@/components/UI//KhButton.vue";
 import KhInput from "@/components/UI/KhInput.vue";
 import { renderIcon } from "@/helper/rendericon.js";
 import KeyIcon from "@/components/icons/KeyIcon.vue";
 
-import { Input } from "@/components/type/input";
-
-
 const props = defineProps({
   arrayInput: {
-    type: Array<Input> ,
-    default: {
-      model: ref(""),
-      type: "text",
-      placeholder: "default",
-      icon: renderIcon(AccountCircle),
-    },
+    type: Array,
+    default: [
+      {
+        model: "",
+        type: "text",
+        placeholder: "default",
+        icon: renderIcon(AccountCircle),
+      },
+    ],
   },
   title: { type: String, default: "Форма" },
 });
-let value = ref("");
+onMounted(() => {
+  console.log(props.arrayInput);
+});
 </script>
 
 <style lang="scss" scoped>

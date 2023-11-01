@@ -25,7 +25,6 @@ export default {
   setup(props, { emit }) {
     const handleInput = (e) => {
       let value = e.target.value;
-      console.log(value);
       emit("update:value", value);
     };
     return {

@@ -1,23 +1,23 @@
 <template>
-  <button :class="['button', `button-${props.size}`]" v-bind="$attrs">
-    <span>{{ props.label }}</span>
+  <button :class="['button', `button-${$props.size}`]" v-bind="$attrs">
+    <span>{{ $props.label }}</span>
   </button>
 </template>
 
-<script   >
+<script>
 export default {
   inheritAttrs: false,
-  props:  { 
-  label: {
-    type: String,
-    default: "Кнопка",
+  props: {
+    label: {
+      type: String,
+      default: "Кнопка",
+    },
+    size: {
+      type: String,
+      default: "2xl",
+    },
   },
-  size: {
-    type: String,
-    default: "2xl",
-  },
-}
-}
+};
 </script>
 
 <style lang="scss" scoped>
