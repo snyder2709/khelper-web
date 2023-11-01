@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script >
 export default {
   inheritAttrs: false,
   props: {
@@ -21,6 +21,7 @@ export default {
     },
     icon: Object,
   },
+  
   setup(props, { emit }) {
     const handleInput = (e) => {
       let value = e.target.value;

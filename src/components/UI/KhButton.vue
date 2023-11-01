@@ -1,11 +1,13 @@
 <template>
-  <button :class="['button', `button-${$props.size}`]" v-bind="$attrs">
+  <button :class="['button', `button-${props.size}`]" v-bind="$attrs">
     <span>{{ props.label }}</span>
   </button>
 </template>
 
-<script setup lang="ts">
-const props = defineProps({
+<script   >
+export default {
+  inheritAttrs: false,
+  props:  { 
   label: {
     type: String,
     default: "Кнопка",
@@ -14,7 +16,8 @@ const props = defineProps({
     type: String,
     default: "2xl",
   },
-});
+}
+}
 </script>
 
 <style lang="scss" scoped>
