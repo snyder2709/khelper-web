@@ -59,7 +59,7 @@ export default {
 }
 .input__default {
   padding: 5px 30px;
-  font-size: 18px;
+  font-size: 1rem;
   border: 1px solid $secondary;
   border-radius: 3px;
   width: 100%;

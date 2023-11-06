@@ -1,5 +1,8 @@
 <template>
-  <button :class="['button', `button-${$props.size}`]" v-bind="$attrs">
+  <button
+    :class="['button', `button-${$props.size}`, `button-${$props.mode}`]"
+    v-bind="$attrs"
+  >
     <span>{{ $props.label }}</span>
   </button>
 </template>
@@ -15,6 +18,10 @@ export default {
     size: {
       type: String,
       default: "2xl",
+    },
+    mode: {
+      type: String,
+      default: "default",
     },
   },
 };

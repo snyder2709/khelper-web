@@ -5,7 +5,6 @@
     </h2>
 
     <div class="form__container">
-
       <kh-input
         v-for="(inputData, index) in props.arrayInput"
         :key="index"
@@ -37,24 +36,23 @@ const props = defineProps({
         type: "text",
         placeholder: "default",
         icon: renderIcon(AccountCircle),
-        error:Function
+        error: Function,
       },
     ],
   },
   title: { type: String, default: "Форма" },
 });
 onMounted(() => {
-  console.log(props.arrayInput)
-})
+  console.log(props.arrayInput);
+});
 </script>
 
 <style lang="scss" scoped>
 .form {
-  margin-top: 120px;
   width: 90%;
-  max-width: 600px;
+  width: 100%;
   &__title {
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
     margin: 20px;
     letter-spacing: 3px;

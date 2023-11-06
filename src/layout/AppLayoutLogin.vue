@@ -1,156 +1,67 @@
 <template>
   <div class="auth">
-    <swiper
-    :slides-per-view="1"
-    :space-between="50"
-    navigation
-    :pagination="{ clickable: true }"
-    :scrollbar="{ draggable: true }"
-  >
-    <swiper-slide>    <kh-form :arrayInput="formStateReg" title="Регистрация">
-      <kh-button @click="registration" label="Зарегестрироваться" />
-    </kh-form></swiper-slide>
-    <swiper-slide>    <kh-form :arrayInput="formStateLog" title="Войти">
-      <kh-button @click="registration" label="Войти" />
-    </kh-form></swiper-slide>
-  </swiper>
-
-
+    <Presence>
+      <Motion
+        :key="current"
+        :initial="{ opacity: 0 }"
+        :animate="{
+          opacity: 1,
+          x: 0,
+          transition: { delay: 0.1 },
+        }"
+        :exit="{ opacity: 0, transition: { delay: 0.1 } }"
+        class="absolute tw-flex tw-flex-col"
+      >
+        <Registration v-if="current === 'registration'" />
+        <Login v-else />
+        <kh-button size="md" @click="toggleForm" :label="labelcomp" />
+      </Motion>
+    </Presence>
   </div>
 </template>
 
 <script setup>
-import AccountCircle from "@/components/icons/AccountCircle.vue";
-import { reactive, ref, h, render, computed, onMounted } from "vue";
-import { renderIcon } from "@/helper/rendericon.js";
+import { computed, ref } from "vue";
+import { Motion, Presence } from "motion/vue";
+import Login from "@/components/Login.vue";
+import Registration from "@/components/Registration.vue";
 import KhButton from "@/components/UI/KhButton.vue";
-import KeyIcon from "@/components/icons/KeyIcon.vue";
-import KhForm from "@/components/UI/KhForm.vue";
-import { useUserStore } from "@/store/user";
-import { getMessageForError } from "../helper/getMessageForError"
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-const { userStateReg, registration,v$ } = useUserStore();
-const formStateReg = ref([
-  {
-    key: "username",
-    model: computed({
-      get() {
-        return userStateReg.username;
-      },
-      set(newValue) {
-        userStateReg.username = newValue;
-      },
-    }),
-    type: "text",
-    placeholder: "Логин",
-    icon: renderIcon(AccountCircle),
-    error:computed(()=> getMessageForError(v$,'username'))
-  },
-  {
-    key: "email",
-    model: computed({
-      get() {
-        return userStateReg.email;
-      },
-      set(newValue) {
-        userStateReg.email = newValue;
-      },
-    }),
-    type: "text",
-    placeholder: "Почта",
-    icon: renderIcon(AccountCircle),
-    error:computed(()=>getMessageForError(v$,'email'))
-  },
-
-  {
-    key: "first_name",
-    model: computed({
-      get() {
-        return userStateReg.first_name;
-      },
-      set(newValue) {
-        userStateReg.first_name = newValue;
-      },
-    }),
-    type: "text",
-    placeholder: "Имя",
-    icon: renderIcon(AccountCircle),
-    error:computed(()=>getMessageForError(v$,"first_name"))
-  },
-  {
-    key: "last_name",
-    model: computed({
-      get() {
-        return userStateReg.last_name;
-      },
-      set(newValue) {
-        userStateReg.last_name = newValue;
-      },
-    }),
-    type: "text",
-    placeholder: "Фамилия",
-    icon: renderIcon(AccountCircle),
-    error:computed(()=>getMessageForError(v$,"last_name"))
-  },
-  {
-    key: "password",
-    model: computed({
-      get() {
-        return userStateReg.password;
-      },
-      set(newValue) {
-        userStateReg.password = newValue;
-      },
-    }),
-    type: "password",
-    placeholder: "Пароль",
-    icon: renderIcon(KeyIcon),
-    error:computed(()=>getMessageForError(v$,"password"))
-  },
-]);
-
-const formStateLog = ref([
-  {
-    key: "username",
-    model: computed({
-      get() {
-        return userStateReg.username;
-      },
-      set(newValue) {
-        userStateReg.username = newValue;
-      },
-    }),
-    type: "text",
-    placeholder: "Логин",
-    icon: renderIcon(AccountCircle),
-    error:computed(()=> getMessageForError(v$,'username'))
-  },
-  {
-    key: "password",
-    model: computed({
-      get() {
-        return userStateReg.password;
-      },
-      set(newValue) {
-        userStateReg.password = newValue;
-      },
-    }),
-    type: "password",
-    placeholder: "Пароль",
-    icon: renderIcon(KeyIcon),
-    error:computed(()=>getMessageForError(v$,"password"))
-  },
-]);
+const current = ref("registration");
+const labelcomp = computed(() =>
+  current.value === "registration" ? "Войти" : "Зарегистрироваться",
+);
+const toggleForm = () => {
+  current.value = current.value === "registration" ? "login" : "registration";
+};
 </script>
 
 <style lang="scss" scoped>
-.auth{
+.auth {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid black;
-  width: 80%;
+  width: 100%;
+  height: 100%;
+}
+.absolute {
+  position: absolute;
+  top: 0;
+}
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.65s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter-from {
+  transform: translateX(320px);
+}
+
+.slide-fade-leave-to {
+  transform: translateX(-320px);
 }
 </style>
