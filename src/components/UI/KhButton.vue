@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/colors.scss";
-.button {
+.button-default {
   position: relative;
   padding: 10px;
   transition: all 0.1s ease-in;
@@ -89,6 +89,17 @@ export default {
     box-shadow:
       0px 2px 3px 0px rgba(0, 0, 0, 0.3),
       0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+.button-link {
+  background: none;
+  font-size: 1rem;
+  width: max-content;
+  color: blue;
+  border-radius: 0px;
+  border-bottom: 1px solid;
+  &:hover {
+    box-shadow: 0px 6px 4px -8px blue;
   }
 }
 </style>

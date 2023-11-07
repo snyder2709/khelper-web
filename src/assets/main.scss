@@ -21,28 +21,29 @@ body {
 }
 
 .wrapper {
-  width: 800px;
-  max-width: 800px;
+  width: 320px;
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .header {
-  padding: 30px;
-
+  width: 100%;
+  height: 10%;
 }
 
 .main {
-  padding: 30px;
+
   flex: 1 1 auto;
   height: 100%;
+  width: 100%;
 
 }
 
 .footer {
-  padding: 30px;
-
+  width: 100%;
+  height: 10%;
 }
 
 .svg-icon {

@@ -2,7 +2,7 @@
   <kh-form :arrayInput="formStateReg" title="Регистрация">
     <kh-button @click="registration" label="Зарегистрироваться" />
   </kh-form>
-</template> 
+</template>
 
 <script setup>
 import { HTTP } from "@/axios/index.js";
@@ -122,6 +122,7 @@ async function registration() {
       .catch((error) => {
         console.log(error);
       });
+  console.log(formStateReg);
 }
 </script>
 

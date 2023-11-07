@@ -10,11 +10,16 @@
           transition: { delay: 0.1 },
         }"
         :exit="{ opacity: 0, transition: { delay: 0.1 } }"
-        class="absolute tw-flex tw-flex-col"
+        class="absolute tw-flex tw-flex-col tw-items-center tw-gap-2"
       >
         <Registration v-if="current === 'registration'" />
         <Login v-else />
-        <kh-button size="md" @click="toggleForm" :label="labelcomp" />
+        <kh-button
+          mode="link"
+          size="md"
+          @click="toggleForm"
+          :label="labelcomp"
+        />
       </Motion>
     </Presence>
   </div>

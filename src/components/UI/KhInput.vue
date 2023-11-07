@@ -7,7 +7,7 @@
       :value="value"
     />
     <component :is="$props.icon"></component>
-    <div v-html="$props.error"></div>
+    <div class="tw-text-red-700" role="alert" v-html="$props.error"></div>
   </div>
 </template>
 

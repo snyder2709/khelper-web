@@ -1,10 +1,14 @@
 export function deepFind(obj, path, defaultReturn = undefined) {
   if (!obj || !path) return defaultReturn;
+  if (obj.value) {
+    obj = obj.value;
+  }
   var paths = path.split("."),
     current = obj,
     i;
   for (i = 0; i < paths.length; ++i) {
     let path = paths[i];
+    console.log(current[`${path}`]);
 
     if (path.includes("[")) {
       let index = path.replace(/.+\[/g, "").replace("]", "");

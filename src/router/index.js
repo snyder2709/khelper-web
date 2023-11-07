@@ -1,5 +1,7 @@
 import AppLayout from "../layout/AppLayout.vue";
 import AppLayoutLogin from "../layout/AppLayoutLogin.vue";
+import App from "@/App.vue";
+import MainLayout from "@/layout/MainLayout.vue";
 import { createRouter, createWebHistory } from "vue-router";
 // const isAuthenticated =
 // router.beforeEach(async (to, from) => {
@@ -10,15 +12,17 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
+    component: App,
+  },
+  {
+    path: "/login",
+    component: AppLayoutLogin,
+    name: "login",
+  },
+  {
+    path: "/main",
     component: AppLayout,
-    children: [
-      {
-        path: "login", // Не указывайте `/` в начале пути
-        component: AppLayoutLogin,
-        name: "login",
-      },
-      // Другие вложенные маршруты, если есть
-    ],
+    name: "main",
   },
 ];
 

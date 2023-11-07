@@ -21,8 +21,8 @@ const userStateLog = reactive({
 });
 const rules = computed(() => {
   return {
-    username: { required: customRules.required },
-    password: { required: customRules.minLength },
+    email: { required: customRules.required },
+    password: { required: customRules.required },
   };
 });
 
@@ -60,16 +60,16 @@ const formStateLog = ref([
   },
 ]);
 async function login() {
-  console.log(v$, ",sdsds");
   const result = await v$.value.$validate();
-  console.log(result);
-  HTTP.post("/login", { user: userStateLog })
-    .then((responce) => {
-      console.log(responce);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  if (result) {
+    HTTP.post("/login", { user: userStateLog })
+      .then((responce) => {
+        console.log(responce);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 }
 </script>
 

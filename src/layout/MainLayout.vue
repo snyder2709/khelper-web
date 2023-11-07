@@ -1,7 +1,7 @@
 <template>
-  <header class="header">
-    <slot></slot>
-  </header>
+  <div class="">
+    <h1>mai asdasdasdasdasdn</h1>
+  </div>
 </template>
 
 <script setup></script>
