@@ -20,7 +20,6 @@
 nav {
   display: flex;
   width: 100%;
-
   border: 1px solid;
   justify-content: space-around;
   height: 100%;

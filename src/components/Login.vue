@@ -15,6 +15,8 @@ import KhForm from "./UI/KhForm.vue";
 import KhButton from "./UI/KhButton.vue";
 import { getMessageForError } from "@/helper/getMessageForError";
 import { computed, reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const userStateLog = reactive({
   email: ref(""),
   password: ref(""),
@@ -65,6 +67,10 @@ async function login() {
     HTTP.post("/login", { user: userStateLog })
       .then((responce) => {
         console.log(responce);
+        localStorage.setItem("t", JSON.stringify(responce.data.user.token));
+        if (responce.status == 200) {
+          router.push({ name: "Main" });
+        }
       })
       .catch((error) => {
         console.log(error);

@@ -118,6 +118,10 @@ async function registration() {
     HTTP.post("/reg", { user: userStateReg })
       .then((responce) => {
         console.log(responce);
+        localStorage.setItem("t", JSON.stringify(responce.data.user.token));
+        if (responce.status == 200) {
+          router.push({ name: "Main" });
+        }
       })
       .catch((error) => {
         console.log(error);
